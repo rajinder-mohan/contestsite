@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+  {% block title %}
+The Bridge
+{% endblock %}
+{% block content %}
+  <div class="section-bridge">
+    <div class="container">
+      <div class="row">
+        <div class="bridge-cover">
+          <div class="col-md-8 col-md-offset-2 text-center" id="play_button">
+            <a href="#" role="button" onclick="previewvideo()"><img src="{% static 'images/Play-Normal-icon.png' %}" class="img-responsive"></a>
+          </div>
+          <div class="col-md-12 text-center" id="video_frame">
+            <video  width="670" height="440" controls>
+              <source src="{% static 'videos/Sample_vide.mp4' %}" type="video/mp4">
+              <source src="{% static 'videos/Sample_vide.ogg' %}" type="video/ogg">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  {% block script %}
+  <script type="text/javascript">
+  	new WOW().init();
+  </script>
+  <script>
+  function previewvideo(){
+    document.getElementById('play_button').style.display="none";
+    document.getElementById('video_frame').style.display="block";
+    document.getElementsByTagName('video')[0].play();
+
+  }
+  </script>
+  <script>
+    $(function() {
+      $('#ChangeToggle').click(function() {
+        $('#navbar-hamburger').toggleClass('hidden');
+        $('#navbar-close').toggleClass('hidden');
+      });
+    });
+  </script>
+{% endblock %}

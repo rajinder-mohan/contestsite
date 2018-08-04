@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+  {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<div id="chat_div">
+<ul id="chat_ul">
+
+</ul>
+<textarea rows="10" cols="10" id="chatmsg"></textarea>
+<button id="sendmsg">SEND</button>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$('#sendmsg').click(function(){
+  var msg = $('#chatmsg').val();
+
+  $.ajax({
+    type: 'GET',
+    url: '/chat/send',
+    data:{"receiver_id":"7", "msg":msg},
+    success: function(response){
+      console.log(response);
+      var resp = JSON.parse(response);
+      alert(response);
+    }
+
+  });
+});
+</script>
+<script src="{{NODEJS_SOCKET_URL}}/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('{{NODEJS_SOCKET_URL}}');
+  socket.on('dailyspecials', function (data) {
+    if (data.message.class_name){
+    	var class_name = data.message.class_name;
+    	$.ajax({
+    		type: 'GET',
+    		url: '/chat/signals',
+        data:{"receiver_id":"7"},
+    		success: function(response){
+          console.log(response);
+    			var resp = JSON.parse(response);
+    		}
+
+    	});
+    }
+
+   });
+
+</script>
+
+{% endblock %}

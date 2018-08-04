@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<form action="{% url 'register' %}" method="POST" onsubmit="return validate()">
+  {% csrf_token %}
+  <table>
+  <tr>
+    <td>First Name:</td><td><input type="text" placeholder="First Name" id="firstname" name="firstname"></td>
+  </tr>
+  <tr>
+  <td>Last Name:</td><td><input type="text" placeholder="Last Name" id="lastname" name="lastname"></td>
+</tr>
+<tr>
+  <td>Email:</td><td><input type="email" placeholder="Email" id="email" name="email"></td>
+</tr>
+<tr>
+  <td>Phone number:</td><td><input type="tel" placeholder="Mobile" id="phone" name="phone"></td>
+</tr>
+<tr>
+  <td>Age:</td><td><input type="number" placeholder="Age" id="age" name="age"></td>
+</tr>
+<tr>
+<td>Choose your Game Style:</td><td><select>
+                            <option value="1">Chracter 1</option>
+                            <option value="2">Chracter 2</option>
+                            <option value="3">Chracter 3</option>
+                            <option value="4">Chracter 4</option>
+                            <option value="5">Chracter 5</option>
+                            <option value="6">Chracter 6</option>
+                          </select></td>
+  </tr>
+  <tr>
+  <td>Occupation:</td><td><input type="text" placeholder="Occupation" id="occupation" name="occupation"></td>
+  </tr>
+  <tr>
+  <td>Address*:</td><td><input type="text" placeholder="Address" id="address" name="address"></td>
+  </tr>
+  <tr>
+  <td>Post Code*:</td><td><input type="text" placeholder="Post Code" id="pin" name="pin"></td>
+  </tr>
+  <tr>
+  <td>Password:</td><td><input type="password" placeholder="Password" id="pass" name="pass"></td>
+  </tr>
+  <tr>
+  <td>Confirm Password:</td><td><input type="password" placeholder="Confirm Password" id="cpass" name="cpass">
+  <span style="color:red;display:none;" id="cmessage">Password not matched.</span><br></td>
+  </tr>
+  <tr>
+  <td><input type="checkbox" id="emailalert" name="emailalert"></td><td>Tick this box if you want an email alert when you have a new token.</td>
+  </tr>
+  <tr>
+  <td><input type="submit" value="Register"></td>
+  <td><a href="{% url 'login' %}">Login</a></td>
+  </tr>
+  </table>
+</form>
+{% endblock %}

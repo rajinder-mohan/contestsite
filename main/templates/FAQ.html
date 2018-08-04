@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+  {% block title %}
+  FAQ
+  {% endblock %}
+{% block content %}
+  <div class="section-faq">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <button class="collapsible">How do I win?</button>
+          <div class="content">
+            <p>Click here and go to our How to Play section</p>
+          </div>
+          <button class="collapsible">Do I need online gaming experience to play Calethium?</button>
+          <div class="content">
+            <p>No. This game can be played by anyone, but a will to win will certainly help you.</p>
+          </div>
+          <button class="collapsible">Do I have to register to play?</button>
+          <div class="content">
+            <p>Yes. Otherwise how do we know who to send your prizes to?</p>
+          </div>
+          <button class="collapsible">I want to play in both Calethium and Project Calethium is that ok?</button>
+          <div class="content">
+            <p>Absolutely. You will need to register for both though.</p>
+          </div>
+          <button class="collapsible">How much does it cost to play? Upgrades etc?</button>
+          <div class="content">
+            <p>Nothing! You cannot pay to improve your position in the game.</p>
+          </div>
+          <button class="collapsible">Can I create my own team?</button>
+          <div class="content">
+            <p>Absolutely. Either with 50 friends, or use chat to bring players into your team.</p>
+          </div>
+          <button class="collapsible">What if a team is full?</button>
+          <div class="content">
+            <p>If it’s full. Move on. Perhaps create your own team. Did you really want to be in that team anyway? Yours will be much better right?</p>
+          </div>
+          <button class="collapsible">How many players can be in a team?</button>
+          <div class="content">
+            <p>A maximum of 50.</p>
+          </div>
+          <button class="collapsible">What if I don’t have 50 friends?</button>
+          <div class="content">
+            <p>Trust me, you are not alone. Go onto chat and make new worldwide friends.</p>
+          </div>
+          <button class="collapsible">I missed one of the exclusive avatars when you launched; Can I still get one?</button>
+          <div class="content">
+            <p>Sorry no, you missed them. However there are some super rare ones that can be randomly found.</p>
+          </div>
+          <button class="collapsible">How old do I have to be?</button>
+          <div class="content">
+            <p>Player must be 16 or over.</p>
+          </div>
+          <button class="collapsible">I won a prize, what happens now?</button>
+          <div class="content">
+            <p>Prizes will be sent out within 60 days of winning</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+  {% block script %}
+  <script type="text/javascript">
+  	new WOW().init();
+  </script>
+  <script>
+    $(function() {
+      $('#ChangeToggle').click(function() {
+        $('#navbar-hamburger').toggleClass('hidden');
+        $('#navbar-close').toggleClass('hidden');
+      });
+    });
+  </script>
+  <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+{% endblock %}

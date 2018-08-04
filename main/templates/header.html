@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<div class="container">
+  <div class="navbar-header page-scroll">
+    <button type="button" id="ChangeToggle2" class="navbar-toggle side-menu-toggle" data-toggle="collapse" onclick="openNav()" aria-expanded="false">
+      <div id="navbar-hamburger2">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+      </div>
+      <div id="navbar-close2" onclick="closeNav()"  class="hidden">
+        <span class="glyphicon glyphicon-remove"></span>
+      </div>
+    </button>
+    <button id="ChangeToggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse" aria-expanded="false">
+      <div id="navbar-hamburger">
+        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+      </div>
+      <div id="navbar-close" class="hidden">
+        <span class="glyphicon glyphicon-remove"></span>
+      </div>
+    </button>
+    <a class="navbar-brand" href="index.html">Logo</a>
+  </div>
+  <br>
+  <div class="collapse navbar-collapse navbar-main-collapse">
+    <ul class="nav navbar-nav">
+      {% if user.is_authenticated %}
+      <li>
+        <a href="{% url 'home' %}">About</a>
+      </li>
+      <li>
+        <a href="{% url 'team' %}">Friends</a>
+      </li>
+      <li>
+        <a href="{% url 'prizeroom' %}">Token Prize Room</a>
+      </li>
+      <li>
+        <a href="{% url 'bridge' %}">The Bridge</a>
+      </li>
+      <li>
+        <a href="#">Rules</a>
+      </li>
+      <li>
+        <a href="#">Create Your team</a>
+      </li>
+      <li>
+        <a href="{% url 'contactus' %}">ContactUs</a>
+      </li>
+      <li>
+        <a href="{% url 'faq' %}">FAQ</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{% url 'home' %}">About</a>
+      </li>
+      <li>
+        <a href="{% url 'contactus' %}">ContactUs</a>
+      </li>
+      <li>
+        <a href="{% url 'faq' %}">FAQ</a>
+      </li>
+      <li>
+        <a href="register.html">Register</a>
+      </li>
+      <li>
+        <a href="login.html">LogIn</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+</nav>

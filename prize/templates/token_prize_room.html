@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+  {% block title %}
+Prize Room
+{% endblock %}
+{% block content %}
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="openNav()">&times;</a>
+  <div class="side-menu-header">
+              <img src="images/avatar-2027366_960_720.png" class="img-responsive">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Anonymous
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Messages&nbsp;&nbsp;<span class="badge badge-light">7</span></a></li>
+                  <li><a href="#"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Logout</a></li>
+                </ul>
+              </div>
+              <br>
+              <span class="status-text"><i class="fa fa-circle"></i>&nbsp;&nbsp;Online</span>
+            </div>
+      <div class="row">
+            <div class="col-md-10 col-sm-10 col-xs-10 country-pic">
+              <img src="images/countryflag.png" class="img-responsive">&nbsp;&nbsp;<span class="pic-text">Pakistan</span>
+            </div>
+            <br>
+            <div class="col-md-10 col-sm-10 col-xs-10 tokens-status">
+              <span class="strong">Tokens</span><span class="tokens-num">20</span>
+            </div>
+          </div>
+</div>
+  <div class="section-prizeroom">
+      <div class="row">
+        <div class="col-md-2 col-sm-2 side-menu">
+          <div class="side-menu-header">
+              <img src="{% static 'images/avatar-2027366_960_720.png' %}" class="img-responsive">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle' %}" type="button" data-toggle="dropdown">Anonymous
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Messages&nbsp;&nbsp;<span class="badge badge-light">7</span></a></li>
+                  <li><a href="#"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Logout</a></li>
+                </ul>
+              </div>
+              <br>
+              <span class="status-text"><i class="fa fa-circle"></i>&nbsp;&nbsp;Online</span>
+            </div>
+          <div class="row">
+            <div class="col-md-10 col-sm-10 country-pic">
+              <img src="{% static 'images/countryflag.png' %}" class="img-responsive">&nbsp;&nbsp;<span class="pic-text">Pakistan</span>
+            </div>
+            <br>
+            <div class="col-md-10 col-sm-10 tokens-status">
+              <span class="strong">Tokens</span><span class="tokens-num">20</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10 col-sm-10 prizeroom-container">
+          <div class="col-md-3 prize-panel">
+            <div class="prize-title">
+              <p>Today</p>
+            </div>
+            <img src="{% static 'images/win-big-prize-sign-lit-led-lights-6086271.jpg' %}" class="img-responsive">
+            <div class="prize-desc">
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            </div>
+            <div class="prize-countdown">
+              <p id="counter1">0d 0h 0m 0s</p>
+            </div>
+          </div>
+          <div class="col-md-3 prize-panel">
+            <div class="prize-title">
+              <p>Week</p>
+            </div>
+            <img src="{% static 'images/win-big-prize-sign-lit-led-lights-6086271.jpg' %}" class="img-responsive">
+            <div class="prize-desc">
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            </div>
+            <div class="prize-countdown">
+              <p id="counter2">0d 0h 0m 0s</p>
+            </div>
+          </div>
+          <div class="col-md-3 prize-panel">
+            <div class="prize-title">
+              <p>Month</p>
+            </div>
+            <img src="{% static 'images/win-big-prize-sign-lit-led-lights-6086271.jpg' %}" class="img-responsive">
+            <div class="prize-desc">
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            </div>
+            <div class="prize-countdown">
+              <p id="counter3">0d 0h 0m 0s</p>
+            </div>
+          </div>
+          <div class="col-md-3 prize-panel">
+            <div class="prize-title">
+              <p>Major</p>
+            </div>
+            <img src="{% static 'images/win-big-prize-sign-lit-led-lights-6086271.jpg' %}" class="img-responsive">
+            <div class="prize-desc">
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            </div>
+            <div class="prize-countdown">
+              <p id="counter4">0d 0h 0m 0s</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  {% endblock %}
+  {% block script %}
+  <script type="text/javascript">
+  	new WOW().init();
+  </script>
+  <script>
+    $(function() {
+      $('#ChangeToggle').click(function() {
+        $('#navbar-hamburger').toggleClass('hidden');
+        $('#navbar-close').toggleClass('hidden');
+      });
+    });
+    $(function() {
+      $('#ChangeToggle2').click(function() {
+        $('#navbar-hamburger2').toggleClass('hidden');
+        $('#navbar-close2').toggleClass('hidden');
+      });
+    });
+  </script>
+  <script>
+    function openNav() {
+      var nav = document.getElementById("mySidenav");
+     if (nav.style.width == '200px') {
+       nav.style.width = '0';
+       nav.style.opacity = 0;
+     } else {
+       nav.style.width = "200px";
+       nav.style.opacity = 1;
+     }
+    }
+  </script>
+  <script>
+    var countDownDate = new Date("march 20, 2018 9:00:25").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("counter1").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("counter1").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    var countDownDate = new Date("march 20, 2018 9:00:25").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("counter2").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("counter2").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    var countDownDate = new Date("march 20, 2018 9:00:25").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("counter3").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("counter3").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+    var countDownDate = new Date("march 20, 2018 9:00:25").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("counter4").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("counte4").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+{% endblock %}

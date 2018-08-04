@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+  {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'editprofile' %}" method="POST" onsubmit="return validateprofile()">
+  {% csrf_token %}
+<table>
+<tr>
+  <td>First Name</td>
+  <td><input type="text" placeholder="First Name" value="{{ user.first_name|title }}" id="firstname" name="firstname"></td>
+</tr>
+<tr>
+  <td>Last Name</td>
+  <td><input type="text" placeholder="Last Name" value="{{ user.last_name|title }}" id="lastname" name="lastname"></td>
+</tr>
+<tr>
+  <td>Email</td>
+  <td><input type="email" placeholder="Email" id="email" name="email" value="{{ user.email }}"></td>
+</tr>
+<tr>
+  <td>Mobile</td>
+  <td><input type="tel" placeholder="Mobile" id="phone" name="phone" value="{{ profile.phone }}"></td>
+</tr>
+<tr>
+  <td>Age</td>
+  <td><input type="number" placeholder="Age" id="age" name="age" value="{{ profile.age }}"></td>
+</tr>
+<tr>
+  <td>Occupation</td>
+  <td><input type="text" placeholder="Occupation" id="occupation" name="occupation" value="{{ profile.occupation }}"></td>
+</tr>
+<tr>
+  <td>Chracter</td>
+  <td><select>
+          <option value="1">Chracter 1</option>
+          <option value="2">Chracter 2</option>
+          <option value="3">Chracter 3</option>
+          <option value="4">Chracter 4</option>
+          <option value="5">Chracter 5</option>
+          <option value="6">Chracter 6</option>
+        </select>
+      </td>
+</tr>
+<tr>
+  <td>Address</td>
+  <td><input type="text" placeholder="Address" id="address" name="address" value="{{ profile.address }}"></td>
+</tr>
+<tr>
+  <td>Zip</td>
+  <td><input type="text" placeholder="Post Code" id="pin" name="pin" value="{{ profile.zipcode }}"></td>
+</tr>
+<tr>
+<td><input type="submit" value="Update"></td>
+<td><a href="{% url 'home' %}">Back</a></td>
+</tr>
+</table>
+</form>
+{% endblock %}

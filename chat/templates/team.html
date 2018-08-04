@@ -1,0 +1,497 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+  {% block title %}
+Friends
+{% endblock %}
+{% block css %}
+  <style>
+        .chat-cover
+            {
+                display: none;
+                position: fixed;
+                bottom: 0px;
+                right: 20px;
+                background-color: rgb(237, 239, 244);
+                width: 300px;
+                border: 1px solid rgba(29, 49, 91, .3);
+            }
+            .chat-cover .border-chat{
+              border:1px solid #FD8468;
+              margin: 0px;
+            }
+            .chat-cover .first-section
+            {
+                background-color: #FD8468;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                clear: both;
+            }
+            .chat-cover .first-section:hover{
+              cursor: pointer;
+            }
+            .chat-cover .first-section p{
+              color:#fff;
+              margin:0px;
+              padding: 10px 0px;
+            }
+            .chat-cover .first-section .left-first-section
+            {
+                float: left;
+            }
+
+            .chat-cover .first-section .right-first-section
+            {
+                float: right;
+                opacity: 0.5;
+                padding-top: 10px;
+                color: #fff;
+            }
+            .chat-cover .right-first-section i{
+              color:#fff;
+              font-size: 15px;
+              padding: 12px 3px;
+            }
+            .chat-cover .right-first-section i:hover{
+              color:#fff;
+            }
+
+            .chat-cover .first-section .right-first-section a
+            {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .popup-box .popup-messages
+            {
+                height: 100%;
+                overflow-y: scroll;
+            }
+           .chat-cover .third-section{
+              border-top: 1px solid #EEEEEE;
+              background-color: #fff;
+            }
+            .chat-cover .text-bar input{
+              width:90%;
+              margin-left:-15px;
+              padding:10px 10px;
+              border:1px solid #fff;
+            }
+            .chat-cover .text-bar a i{
+              background-color:#FD8468;
+              color:#fff;
+              width:30px;
+              height:30px;
+              padding:7px 0px;
+              border-radius: 50%;
+              text-align: center;
+            }
+    </style>
+    <script>
+            //this function can remove a array element.
+            Array.remove = function(array, from, to) {
+                var rest = array.slice((to || from) + 1 || array.length);
+                array.length = from < 0 ? array.length + from : from;
+                return array.push.apply(array, rest);
+            };
+
+            var total_popups = 0;
+
+            //arrays of popups ids
+            var popups = [];
+
+            //this is used to close a popup
+            function close_popup(id)
+            {
+                for(var iii = 0; iii < popups.length; iii++)
+                {
+                    if(id == popups[iii])
+                    {
+                        Array.remove(popups, iii);
+
+                        document.getElementById(id).style.display = "none";
+
+                        calculate_popups();
+
+                        return;
+                    }
+                }
+            }
+
+            function display_popups()
+            {
+                var right = 20;
+
+                var iii = 0;
+                for(iii; iii < total_popups; iii++)
+                {
+                    if(popups[iii] != undefined)
+                    {
+                        var element = document.getElementById(popups[iii]);
+                        element.style.right = right + "px";
+                        right = right + 320;
+                        element.style.display = "block";
+                    }
+                }
+
+                for(var jjj = iii; jjj < popups.length; jjj++)
+                {
+                    var element = document.getElementById(popups[jjj]);
+                    element.style.display = "none";
+                }
+            }
+
+            function register_popup(id, name, userid)
+            {
+                for(var iii = 0; iii < popups.length; iii++)
+                {
+                    //already registered. Bring it to front.
+                    if(id == popups[iii])
+                    {
+                        Array.remove(popups, iii);
+
+                        popups.unshift(id);
+
+                        calculate_popups();
+
+
+                        return;
+                    }
+                }
+                $.ajax({
+                          url: "{% url 'chatbox' %}",
+                          type:"GET",
+                          data: {
+                             'id':userid
+                          },
+                          success: function(response) {
+                            response_data = JSON.parse(response);
+                            var element = '<div class="chat-cover" id="' + id +'">';
+                          element = element + '<div class="row border-chat">';
+                        element = element + '<div class="col-md-12 col-sm-12 col-xs-12 first-section">';
+                      element = element + '<div class="row">';
+                    element = element + '<div class="col-md-8 col-sm-6 col-xs-6 left-first-section">';
+                    element = element + '<p>'+ name +'</p>';
+                    element = element + '</div>';
+                    element = element + '<div class="col-md-4 col-sm-6 col-xs-6 right-first-section">';
+                    element = element + '<a href="javascript:close_popup(\''+ id +'\');">&#10005;</a>';
+                    element = element + '</div>';
+                      element = element + '</div>';
+                        element = element + '</div>';
+                          element = element + '</div>';
+                            element = element + '<div class="row border-chat">';
+                        element = element + '<div class="col-md-12 col-sm-12 col-xs-12 second-section">';
+                      element = element + '<div class="chat-section">';
+                    if(response_data.data=="available"){
+                      msg_data = response_data.msg;
+                      element = element + '<ul>';
+                      for (var i=0;i<msg_data.length;i++){
+                        element = element + '<li>';
+                        if(msg_data[i].me=="sender"){
+                          element = element + '<div class="left-chat">';
+                        }
+                        else{
+                          element = element + '<div class="right-chat">';
+                        }
+                        element = element + '<p>'+msg_data[i].msg;
+                        element = element + '</p>';
+                        element = element + '</div>';
+                        element = element + '</li>';
+                      }
+
+                      element = element + '</ul>';
+                    }
+
+                      element = element + '</div>';
+                        element = element + '</div>';
+                          element = element + '</div>';
+                            element = element + '<div class="row border-chat">';
+                        element = element + '<div class="col-md-12 col-sm-12 col-xs-12 third-section">';
+                      element = element + '<div class="text-bar">';
+                    element = element + '<input type="text" placeholder="Write messege"><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>';
+                      element = element + '</div>';
+                        element = element + '</div>';
+                          element = element + '</div>';
+                            element = element + '</div>';
+                            document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;
+
+                            popups.unshift(id);
+
+                            calculate_popups();
+                          }
+                      });
+
+
+            }
+
+            function calculate_popups()
+            {
+                var width = window.innerWidth;
+                if(width < 540)
+                {
+                    total_popups = 0;
+                }
+                else
+                {
+                    width = width - 200;
+                    //320 is width of a single popup box
+                    total_popups = parseInt(width/320);
+                }
+
+                display_popups();
+
+            }
+            window.addEventListener("resize", calculate_popups);
+            window.addEventListener("load", calculate_popups);
+
+        </script>
+{% endblock %}
+
+{% block content %}
+  <div class="section-team">
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="openNav()">&times;</a>
+  <div class="side-menu-header">
+              <img src="{% static 'images/avatar-2027366_960_720.png' %}" class="img-responsive">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{ user.first_name|title }} {{ user.last_name|title }}
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Messages&nbsp;&nbsp;<span class="badge badge-light">7</span></a></li>
+                  <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Logout</a></li>
+                </ul>
+              </div>
+              <br>
+              <span class="status-text"><i class="fa fa-circle"></i>&nbsp;&nbsp;Online</span>
+            </div>
+      <div class="row">
+
+            <div class="col-md-10 col-sm-10 col-xs-10 tokens-status">
+              <span class="strong">Tokens</span><span class="tokens-num">20</span>
+            </div>
+          </div>
+</div>
+    <div class="row">
+      <div class="col-md-2 col-sm-2 side-menu">
+          <div class="side-menu-header">
+              <img src="{% static 'images/avatar-2027366_960_720.png' %}" class="img-responsive">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">{{ user.first_name|title }} {{ user.last_name|title }}
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Messages&nbsp;&nbsp;<span class="badge badge-light">7</span></a></li>
+                  <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Logout</a></li>
+                </ul>
+              </div>
+              <br>
+              <span class="status-text"><i class="fa fa-circle"></i>&nbsp;&nbsp;Online</span>
+            </div>
+          <div class="row">
+            <div class="col-md-10 col-sm-10 tokens-status">
+              <span class="strong">Tokens</span><span class="tokens-num">20</span>
+            </div>
+          </div>
+        </div>
+      <div class="col-md-6 mycompany">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a id ="focusmeplease" class="nav-link" data-toggle="tab" href="#messages">Messages</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#team">Find Friends</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="tab" href="#sendrequests">Send Requests&nbsp;&nbsp;<span class="badge badge-light">{{ sendfriendrequets|length }}</span></a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" data-toggle="tab" href="#receiverequests">Received Requests&nbsp;&nbsp;<span class="badge badge-light">{{ receivefriendrequets|length }}</span></a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" data-toggle="tab" href="#party">Friends</a>
+           </li>
+          </ul>
+          <div class="tab-content-scroll-handler">
+            <div class="tab-content">
+            <div id="messages" class="tab-pane active"><br>
+              <form class="gnrlsearch" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+              {% if threadlist %}
+              {% for msg in threadlist %}
+              <div class="chatpanel">
+                <a href="javascript:register_popup('{{ msg.name }}', '{{ msg.name }}',{{ msg.userid }});">
+                <img src="{% static 'images/rustamgaifullin567dbe93a6c72.png' %}" alt="Avatar" style="width:100%;">
+                <p>
+                  <span class="strong">{{ msg.name }}</span><br>
+                  <span class="msg">{{ msg.sender }} {{ msg.msg }}</span>
+                </p>
+                <span class="time-right">{{ msg.date }}</span>
+                </a>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="chatpanel">
+                No messages available.
+              </div>
+              {% endif %}
+            </div>
+           <div id="team" class="tab-pane fade"><br>
+             <form class="gnrlsearch" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+              <input type="hidden" id="postactionadf" value="{% url 'addfriend' %}">
+              {% if findfriendslist %}
+              {% for friend in findfriendslist %}
+              <div class="chatpanel">
+                <a href="#">
+                  <img src="{% static 'images/rustamgaifullin567dbe93a6c72.png' %}" alt="Avatar" style="width:100%;">
+                  <p class="strong">{{ friend.first_name|title }} {{ friend.last_name|title }}<!-- <br><span class="teammembers"><small>112 Members</small></span>--></p>
+                  <button class="btn btn-primary btn-small" onclick="addFriend({{ friend.id }},this)">Add Friend</button>
+                </a>
+              </div>
+              {% endfor %}
+              {% else %}
+                <div class="chatpanel">
+                  No suggestion available.
+                </div>
+              {% endif %}
+           </div>
+
+           <div id="sendrequests" class="tab-pane fade"><br>
+             <form class="gnrlsearch" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+              <input type="hidden" id="postactioncr" value="{% url 'cancelrequests' %}">
+              {% if sendfriendrequets %}
+              {% for user in sendfriendrequets %}
+              <div class="chatpanel">
+                <a href="#">
+                  <img src="{% static 'images/rustamgaifullin567dbe93a6c72.png' %}" alt="Avatar" style="width:100%;">
+                  <p class="strong">
+                    {{ user.first_name|title }} {{ user.last_name|title }}
+                    <!-- <br>
+                    <img src="{% static 'images/countryflag.png' %}" class="img-responsive country-logo"><span class="pic-text small">(Pakistan)</span> -->
+                  </p>
+                  <button class="btn btn-danger btn-small" onclick="cancelRequest({{ user.id }},this)">Delete</button>
+                </a>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="chatpanel">
+                You don't have any requests.
+              </div>
+              {% endif %}
+           </div>
+
+           <div id="receiverequests" class="tab-pane fade"><br>
+             <form class="gnrlsearch" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+              <input type="hidden" id="postactionaf" value="{% url 'acceptrequest' %}">
+              <input type="hidden" id="postactiondfr" value="{% url 'deleterequest' %}">
+
+              {% if receivefriendrequets %}
+              {% for user in receivefriendrequets %}
+              <div class="chatpanel">
+                <a href="#">
+                  <img src="{% static 'images/rustamgaifullin567dbe93a6c72.png' %}" alt="Avatar" style="width:100%;">
+                  <p class="strong">
+                    {{ user.first_name|title }} {{ user.last_name|title }}
+                    <!-- <br>
+                    <img src="images/countryflag.png' %}" class="img-responsive country-logo"><span class="pic-text small">(Pakistan)</span> -->
+                  </p>
+
+                  <button class="btn btn-success btn-small" onclick="acceptFried({{ user.id }},this)">Accept</button>
+                  <button class="btn btn-danger btn-small" onclick="deleteFriedRequest({{ user.id }},this)">Delete</button>
+                </a>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="chatpanel">
+                You don't have any requests.
+              </div>
+              {% endif %}
+           </div>
+           <div id="party" class="tab-pane fade"><br>
+             <form class="gnrlsearch" action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+              {% if allfriends %}
+              {% for user in allfriends %}
+              <div class="chatpanel">
+                <a href="#">
+                  <img src="{% static 'images/rustamgaifullin567dbe93a6c72.png' %}" alt="Avatar" style="width:100%;">
+                  <p>
+                    <span class="strong">{{ user.first_name|title }} {{ user.last_name|title }}</span>
+                    <br>
+                  </p>
+                  <button class="btn btn-success btn-small" onclick="register_popup('{{ user.first_name|title }} {{ user.last_name|title }}', '{{ user.first_name|title }} {{ user.last_name|title }}',{{ user.id }})">Send Message</button>
+                </a>
+              </div>
+              {% endfor %}
+              {% else %}
+                <div class="chatpanel">
+                  You don't have any friends.
+                </div>
+              {% endif %}
+           </div>
+           </div>
+          </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block script %}
+  <script type="text/javascript">
+  	new WOW().init();
+  </script>
+  <script>
+    $(function() {
+      $('#ChangeToggle').click(function() {
+        $('#navbar-hamburger').toggleClass('hidden');
+        $('#navbar-close').toggleClass('hidden');
+      });
+    });
+    $(function() {
+      $('#ChangeToggle2').click(function() {
+        $('#navbar-hamburger2').toggleClass('hidden');
+        $('#navbar-close2').toggleClass('hidden');
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+    	$(".left-first-section").click(function(){
+            $('.chat-cover').toggleClass("open-more");
+        });
+    });
+    $(document).ready(function(){
+    	$(".fa-minus").click(function(){
+            $('.chat-cover').toggleClass("open-more");
+        });
+    });
+    $(document).ready(function(){
+    	$(".chatlink").click(function(){
+            $('.chat-cover').toggleClass("open-more");
+        });
+    });
+    document.getElementById('focusmeplease').focus();
+  </script>
+  <script>
+    function openNav() {
+      var nav = document.getElementById("mySidenav");
+     if (nav.style.width == '200px') {
+       nav.style.width = '0';
+       nav.style.opacity = 0;
+     } else {
+       nav.style.width = "200px";
+       nav.style.opacity = 1;
+     }
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,408 @@
+body{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+html{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+.coverImage{
+  width: 38.3px;
+  height: 45px;
+}
+.fstrow{
+  background-color: black;
+}
+.border-test .fstrow .imgcover{
+  float: left;
+}
+.border-test .col-md-1,
+.border-test .col-xs-1{
+  width: 5.333333% !important;
+}
+.border-test .col-md-12,
+.border-test .col-xs-12{
+  height: 670px !important;
+}
+.main-content{
+  background-image: url(../backgrnd2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
+.section-main{
+  background-image: url(../images/e9ebe06a9a88a225babb70f0b2c5964e.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 105% auto;
+}
+#content {
+    width: 90%;
+    margin: 0 auto 0px auto;
+}
+
+/* COUNTDOWN - Inspiration http://fff.cmiscm.com/#!/section/flipclock */
+/* ----------------------------------------------------------------------------------------- */
+.counter{
+  margin-top: 420px;
+}
+.countdown {
+    display: table-cell;
+    font-weight: normal;
+    margin-top: 100px;
+}
+.countdown .item {
+    display: inline-block;
+    vertical-align: bottom;
+    position: relative;
+    font-family: 'Open Sans', cursive;
+    font-weight: 700;
+    font-size: 140px;
+    line-height: 180px;
+    text-align: center;
+    color: #B7B7B7;
+    border-radius: 10px;
+    margin: 50px 10px 0px 0;
+    padding: 0 10px;
+    background: #2A2A2A;
+    background: -webkit-linear-gradient(#2A2A2A, #000);
+    background: linear-gradient(#2A2A2A, #000);
+    overflow: hidden;
+}
+.countdown .item-ss {
+    font-size: 55px;
+    line-height: 90px;
+}
+.countdown .item-ss .label{
+  font-size: 13px;
+}
+.countdown .item:after {
+    content: '';
+    display: block;
+    height: 1px;
+    border-top: 3px solid #111;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.countdown .label {
+    text-transform: uppercase;
+    display: block;
+    position: absolute;
+    font-family: 'Open Sans', cursive;
+    font-weight: 700;
+    line-height: normal;
+    right: 6px;
+    bottom: 4px;
+    font-size: 14px;
+    color: #B9B9B9;
+}
+.countdown .item-hh .label,
+.countdown .item-mm .label,
+.countdown .item-ss .label {
+    display: block;
+}
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+.section-reg{
+  background-image: url(../images/HIGH16971_618396.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100% auto;
+}
+.section-login{
+  background-image: url(../images/total-war-warhammer-2-rollin.webp);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100%;
+}
+.reg-cover,
+.login-cover{
+  background-color: #000;
+  padding: 20px 60px 10px 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login-cover{
+  margin-top: 155px;
+}
+@media all and (min-width: 768px){
+  .reg-cover,
+  .login-cover{
+    margin-left: -17px;
+    margin-right: 17px;       
+  }
+}
+.reg-cover .form-control,
+.login-cover .form-control{
+  height: 50px;
+}
+input[type="checkbox"] {
+   display: none;
+   padding-left: 0px !important;
+}
+label {
+  cursor: pointer;
+  padding-left: 0px !important;
+  color: #fff;
+  
+}
+
+.option-checkbox input[type="checkbox"] + label:before {
+  border: 1px solid #7f83a2;
+  content: "\00a0";
+  display: inline-block;
+  font: 15px/1em sans-serif;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-left: 0px !important;
+  vertical-align: top;
+  background: white;
+  cursor: pointer;  width: 20px; height: 20px; top: 0; border-radius: 10px; 
+}
+input[type="checkbox"] + label:before {
+  border: 1px solid #7f83a2;
+  content: "\00a0";
+  display: inline-block;
+  font: 15px/1em sans-serif;
+  height: 20px;
+  width: 20px;
+  padding-top: 2px;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-left: 0px !important;
+  vertical-align: top;
+  background: white;
+
+}
+input[type="checkbox"]:checked + label:before {
+  background: #FF0000;
+  color: white;
+  content: "\2713";
+  text-align: center;
+  outline: none;
+  border: none;
+}
+input[type="checkbox"]:checked + label:after {
+  font-weight: bold;
+}
+
+.reg-cover .btn-default,
+.login-cover .btn-default{
+  background-color: #004A7F;
+  color: white;
+  border: none;
+  outline: none;
+}
+.reg-cover .btn-default:focus,
+.reg-cover .btn-default:active,
+.login-cover .btn-default:active,
+.login-cover .btn-default:focus
+{
+  border: none;
+  outline: none;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+
+.reg-cover .btn-default,
+.login-cover .btn-default{
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+.login-cover .btn-fb{
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  outline: none;
+}
+.login-cover .btn-fb:hover,
+.login-cover .btn-fb:active,
+.login-cover .btn-fb:focus{
+  background-color: #324b81 !important;
+  color: white;
+  border: none !important;
+  outline: none;
+}
+.login-cover .btn-fb.hover,
+.login-cover .btn-fb.active,
+.login-cover .btn-fb.focus{
+  background-color: #324b81 !important;
+  color: white;
+  border: none !important;
+  outline: none;
+}
+.login-cover .btn-twitter{
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  outline: none;
+}
+.login-cover .btn-twitter:hover,
+.login-cover .btn-twitter:active,
+.login-cover .btn-twitter:focus{
+  background-color:  #0d8bd9 !important;
+  color: white;
+  border: none !important;
+  outline: none;
+}
+.login-cover .btn-twitter:hover,
+.login-cover .btn-twitter:active,
+.login-cover .btn-twitter:focus{
+  background-color:  #0d8bd9 !important;
+  color: white;
+  border: none !important;
+  outline: none;
+}
+.sept-text{
+  color: white;
+  margin-bottom: 10px;
+}
+.remind-text{
+  color: #fff;
+  margin-top: -10px;
+}
+.remind-text a{
+  text-decoration: underline;
+  color: #fff;
+}
+.dropdown-toggle {
+    background-color: #fff;
+    color: #000;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+}
+.dropdown {
+    position: relative;
+    display: block;
+}
+.dropdown-menu{
+    position: relative;
+    background-color: #f1f1f1;
+    min-width: -webkit-fill-available;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-menu li{
+    color: black;
+    padding: 0px 0px;
+    text-decoration: none;
+    display: inline-block;
+}
+.dropdown-menu li a{
+  padding: 3px 15px !important;
+}
+.dropdown-menu a img{
+  width: 50px;
+  height: 50px;
+  margin: 0px auto;
+}
+.dropdown-content a:hover {background-color: #ddd}
+.dropdown:hover .dropdown-content {
+    display: block;
+    position: relative;
+}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+.section-bridge{
+  background-image: url(../images/IKS_Taj.png);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 100%;
+}
+.section-bridge img{
+  margin: 0 auto;
+  margin-top: 270px;
+  width: 150px;
+  height: 150px;
+}
+.section-bridge #video_frame{
+  display: none;
+  margin 0 auto;
+  margin-top: 120px;
+}

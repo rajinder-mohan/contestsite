@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+  <div class="section-reg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <div class="reg-cover">
+            <form action="" method="post">
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <input type="text" class="form-control" name="firstname" placeholder="Enter your First Name" id="firstname" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Enter your Last Name" name="lastname" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-hourglass"></span>
+                </div>
+                <input type="number" class="form-control" placeholder="Enter your Age" name="age" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-send"></span>
+                </div>
+                <input type="text" class="form-control" name="inputaddress" placeholder="Enter your Address" name="address" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-home"></span>
+                </div>
+                <input type="text" class="form-control" id="inputcity" name="city" placeholder="Enter your City Name" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-map-marker"></span>
+                </div>
+                <input type="text" class="form-control" id="inputarea" name="area" placeholder="Enter your Area" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-flag"></span>
+                </div>
+                <input type="number" class="form-control" id="inputpostcode" name="pin" placeholder="Enter your Post Code" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-asterisk"></span>
+                </div>
+                <input type="text" class="form-control" id="inputoccupation" name="occupation"  placeholder="Enter your Occupation" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-envelope"></span>
+                </div>
+                <input type="email" class="form-control" id="inputemail" name="email" placeholder="Enter your Email" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-lock"></span>
+                </div>
+                <input type="password" class="form-control" id="inputpassword" placeholder="Enter Password" name="pass" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-lock"></span>
+                </div>
+                <input type="password" class="form-control" name="cpass" id="inputconfrmpassword" placeholder="Enter Password Again" required>
+              </div>
+              <div class="form-group">
+               <div class="dropdown">
+                 <button class="dropdown-toggle btn btn-lg btn-block" data-toggle="dropdown">Choose your avatar&nbsp;&nbsp;<i class="fa fa-caret-down"></i></button>
+                   <div class="dropdown-menu">
+                      <li><a href="#"><img src="{% static 'images/female1-512.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/avatar-2027366_960_720.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/images.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/avatar-2027366_960_720.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/1iydnsu7s91d9zwrnmqh.png.resize.710x399.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/522569-1eWJyL1490726864.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/img_avatar.png' %}" class="img-responsive"></a></li>
+                      <li><a href="#"><img src="{% static 'images/malecostume-512.png' %}" class="img-responsive"></a></li>
+                   </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" id="cb2" required><label for="cb2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tick this box if you want an email alert when you have new token</label>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" role="link" href="#" class="btn btn-default btn-block" onclick="location.href='#'">Register</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-12 text-center remind-text">
+            <p>Already registered? <a href="{% url 'login' %}">LogIn here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  {% block script %}
+    <script type="text/javascript">
+    	new WOW().init();
+    </script>
+  {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+  {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+  <input type="hidden" id="postaction" value="{% url 'addfriend' %}">
+  {% csrf_token %}
+  {% if users %}
+    <table>
+    {% for user in users %}
+        <tr>
+          <td>{{ user.first_name|title }} {{ user.last_name|title }}</td>
+          <td><input type="button" value="Add Friend" onclick="addFriend({{ user.id }},this)"></td>
+
+        </tr>
+        <tr>
+          <td colspan="2"><hr></td>
+        </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <h3>No suggestions available right now.</h3>
+  {% endif %}
+
+{% endblock %}

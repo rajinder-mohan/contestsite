@@ -1,0 +1,65 @@
+{% extends "loginbase.html" %}
+{% load staticfiles %}
+{% block content %}
+  <div class="section-login">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+          <div class="login-cover">
+            <form action="{% url 'login' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-lock"></span>
+                </div>
+                <input type="password" class="form-control" id="inputpassword" placeholder="Password" name="pass" required>
+              </div>
+              <div class="form-group input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-envelope"></span>
+                </div>
+                <input type="email" class="form-control" id="inputemail" placeholder="Email" name="email" required>
+              </div>
+              <div class="form-group ">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" id="cb2" required><label for="cb2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remember me</label>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" role="link" class="btn btn-default btn-block">LogIn</button>
+              </div>
+              <div class="col-md-12 text-center sept-text">
+                or
+              </div>
+              <div class="form-group">
+                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-fb btn-success">LogIn with Facebook</button>
+                  </div>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-twitter btn-danger">Login with twitter</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-12 text-center remind-text">
+            <p>Not registered yet? <a href="{% url 'register' %}">Register now!</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+	new WOW().init();
+</script>
+{% endblock %}

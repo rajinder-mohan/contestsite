@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block header %}
+  {% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+<table>
+<tr>
+  <td>Name</td>
+  <td>{{ user.first_name|title }} {{ user.last_name|title }}</td>
+</tr>
+<tr>
+  <td>Email</td>
+  <td>{{ user.email }}</td>
+</tr>
+<tr>
+  <td>Mobile</td>
+  <td>{{ profile.phone }}</td>
+</tr>
+<tr>
+  <td>Age</td>
+  <td>{{ profile.age }}</td>
+</tr>
+<tr>
+  <td>Occupation</td>
+  <td>{{ profile.occupation }}</td>
+</tr>
+<tr>
+  <td>Chracter</td>
+  <td>{{ profile.chracter }}</td>
+</tr>
+<tr>
+  <td>Address</td>
+  <td>{{ profile.address }}</td>
+</tr>
+<tr>
+  <td>Zip</td>
+  <td>{{ profile.zipcode }}</td>
+</tr>
+<tr>
+  <td colspan="2"><a href="{% url 'editprofile' %}">Edit Profile</a></td>
+</tr>
+</table>
+{% endblock %}
